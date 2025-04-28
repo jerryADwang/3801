@@ -41,8 +41,6 @@ function Template({ children }) {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
- 
-    
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider style={siderStyle}>
