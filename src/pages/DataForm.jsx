@@ -166,7 +166,12 @@ function Index() {
                 <Col span={8}>
                   <div style={{ textAlign: 'left' }}>
                     <Title level={5}>Entry Date</Title>
-                    <DatePicker style={{ width: '100%' }} />
+                    <DatePicker
+                      style={{ width: '100%' }}
+                      disabledDate={(current) => {
+                        return current && current > new Date();
+                      }}
+                    />
                   </div>
                 </Col>
               </Row>
