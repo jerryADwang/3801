@@ -26,10 +26,10 @@ const siderStyle = {
 };
 
 const menuItems = [
-  { key: '1', icon: SolutionOutlined, label: 'Prevention Solutions' },
-  { key: '2', icon: BarChartOutlined, label: 'Predictive Analytics' },
-  { key: '3', icon: TeamOutlined, label: 'Employee' },
-  { key: '4', icon: EyeOutlined, label: 'Employee Insights' },
+  { key: '1', icon: EyeOutlined, label: 'Employee Insights' },
+  { key: '2', icon: TeamOutlined, label: 'Employee' },
+  { key: '3', icon: BarChartOutlined, label: 'Predictive Analytics' },
+  { key: '4', icon: SolutionOutlined, label: 'Prevention Solutions' },
   { key: '5', icon: SettingOutlined, label: 'Settings & Privacy' },
 ].map(item => ({
   key: item.key,
@@ -73,34 +73,7 @@ const App = ({children}) => {
             <DownOutlined />
           </div>
         </Header>
-        <Content style={{ 
-          margin: '24px 16px 0', 
-          overflow: 'initial',
-          minHeight: 'calc(100vh - 112px)'
-        }}>
-          <div
-            style={{
-              padding: 24,
-              background: colorBgContainer,
-              borderRadius: borderRadiusLG,
-              minHeight: '100%',
-              textAlign: 'center'
-            }}
-          >
-            <Analysis />
-            <p>long content</p>
-
-            {
-              // indicates very long content
-              Array.from({ length: 100 }, (_, index) => (
-                <React.Fragment key={index}>
-                  {index % 20 === 0 && index ? 'more' : '...'}
-                  <br />
-                </React.Fragment>
-              ))
-            }
-          </div>
-        </Content>
+        {children}
         <Footer style={{ textAlign: 'center' }}>
           Deco3801 ©{new Date().getFullYear()} Created by Team xxx
         </Footer>

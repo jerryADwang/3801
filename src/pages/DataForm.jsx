@@ -2,11 +2,12 @@ import { useState } from 'react'
 import Template from '../components/Template'
 import { Typography } from 'antd';
 const { Title } = Typography;
-import { Layout, Menu, theme, Select, DatePicker, Button, Row, Col, Divider,Table, Tag, Space } from 'antd';
+import { Layout, theme, Select, DatePicker, Button, Row, Col, Divider, Table, Tag, Space } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 const { Header, Content, Footer, Sider } = Layout;
 import React from 'react';
-
+import RequestMessage from '../components/RequestMessage';
 
 const columns = [
   {
@@ -71,18 +72,55 @@ const columns = [
     ),
   },
 ];
-const data = [
 
+const data = [
+  {
+    key: '1',
+    index: '1',
+    name: 'John Brown',
+    age: 32,
+    department: 'Sale',
+    mentalHealthData: 'Good',
+    recent30DayTendency: 'Stable',
+    tags: ['nice', 'developer'],
+  },
+  {
+    key: '2',
+    index: '2',
+    name: 'Jim Green',
+    age: 42,
+    department: 'Human Resource',
+    mentalHealthData: 'Moderate',
+    recent30DayTendency: 'Improving',
+    tags: ['loser'],
+  },
+  {
+    key: '3',
+    index: '3',
+    name: 'Joe Black',
+    age: 32,
+    department: 'Finance',
+    mentalHealthData: 'Poor',
+    recent30DayTendency: 'Declining',
+    tags: ['cool', 'teacher'],
+  },
 ];
 
 function Index() {
+  const navigate = useNavigate();
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
+  // const handleRowClick = (record) => {
+  //   console.log('Clicked row:', record);
+  //   navigate(`/employee/${record.key}`);
+  // };
+
   return (
     <Template>
-      <Content style={{ 
-        margin: '24px 16px 0', 
+      <Content style={{
+        margin: '24px 16px 0',
         overflow: 'initial',
         minHeight: 'calc(100vh - 112px)'
       }}>
@@ -134,15 +172,20 @@ function Index() {
               </Row>
             </Col>
             <Col span={10} style={{ textAlign: 'right' }}>
-              <Button icon={<SearchOutlined />} type="primary" style={{ marginRight: 8 }}>Search</Button>
+              <RequestMessage icon={<SearchOutlined />} type="primary" style={{ marginRight: 8 }}>Search</RequestMessage>
               <Button>Reset</Button>
             </Col>
           </Row>
           <Divider />
-        <Table columns={columns} dataSource={data} />
-
+          <Table
+            columns={columns}
+            dataSource={data}
+            onRow={(record) => ({
+              onClick: () => handleRowClick(record),
+              style: { cursor: 'pointer' }
+            })}
+          />
         </div>
-        
       </Content>
     </Template>
   )
